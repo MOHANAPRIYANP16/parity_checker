@@ -54,11 +54,8 @@ begin
     begin
         parity_ok <= 1'b0; 
     end
-   
+
 end
-
-  naveen
-
 endmodule 
 
 
