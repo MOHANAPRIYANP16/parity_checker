@@ -1,5 +1,5 @@
 $date
-	Sun Aug  3 22:36:20 2025
+	Tue Aug 12 16:49:00 2025
 $end
 $version
 	Icarus Verilog
@@ -9,179 +9,116 @@ $timescale
 $end
 $scope module tb $end
 $var wire 1 ! parity_ok $end
-$var reg 1 " clk $end
-$var reg 3 # data_in [2:0] $end
-$var reg 1 $ mode $end
-$var reg 1 % rst $end
-$var reg 1 & valid $end
+$var wire 4 " counter [3:0] $end
+$var reg 1 # clk $end
+$var reg 1 $ data_in $end
+$var reg 1 % mode $end
+$var reg 1 & reset $end
+$var reg 1 ' valid $end
 $scope module u1 $end
-$var wire 1 " clk $end
-$var wire 3 ' data_in [2:0] $end
-$var wire 1 $ mode $end
-$var wire 1 % rst $end
-$var wire 1 & valid $end
+$var wire 1 # clk $end
+$var wire 1 $ data_in $end
+$var wire 1 % mode $end
+$var wire 1 & reset $end
+$var wire 1 ' valid $end
+$var reg 4 ( counter [3:0] $end
+$var reg 1 ) curr_state $end
+$var reg 1 * next_state $end
 $var reg 1 ! parity_ok $end
-$var reg 1 ( state $end
-$var integer 32 ) i [31:0] $end
 $upscope $end
 $upscope $end
 $enddefinitions $end
 #0
 $dumpvars
-bx )
-x(
-b0 '
+0*
+0)
+b0 (
+0'
 1&
 0%
 0$
-b0 #
-0"
-x!
+0#
+b0 "
+0!
 $end
-#5
+#5000
+1#
+#10000
+1*
+0#
+1$
+1'
+0&
+#15000
+0*
+b1 "
+b1 (
+1)
+1#
+#20000
+0#
+#25000
+1*
+b10 "
+b10 (
+0)
+1#
+#30000
+0*
+0#
+0$
+#35000
+b11 "
+b11 (
+1#
+#40000
+1*
+0#
+1$
+#45000
+0*
+b100 "
+b100 (
+1)
+1#
+#50000
+1*
+0#
+0$
+#55000
+b101 "
+b101 (
+1#
+#60000
+0#
+#65000
+b110 "
+b110 (
+1#
+#70000
+0#
+#75000
+b111 "
+b111 (
+1#
+#80000
+0*
+0#
+1$
+#85000
+1*
+b1000 "
+b1000 (
+0)
+1#
+#90000
+0#
+#95000
+0*
 1!
-b100 )
-0(
-1"
-#10
-0!
-0"
-0&
-1$
-1%
-#15
-1"
-#20
-0"
-0$
-b1 #
-b1 '
-0%
-#25
-1"
-#30
-0"
-1&
-1$
-1%
-#35
-1"
-#40
-0"
-0&
-0$
-b10 #
-b10 '
-0%
-#45
-1"
-#50
-0"
-1&
-1$
-#55
-1!
-1(
-b100 )
-1"
-#60
-0"
-0$
-b11 #
-b11 '
-#65
-b100 )
-0(
-1"
-#70
-0"
-0&
-1$
-#75
-0!
-1"
-#80
-0"
-1&
-0$
-b100 #
-b100 '
-1%
-#85
-1"
-#90
-0"
-0&
-1$
-#95
-1"
-#100
-0"
-1&
-0$
-b101 #
-b101 '
-0%
-#105
-1!
-0(
-b100 )
-1"
-#110
-0"
-1$
-#115
-0!
-0(
-b100 )
-1"
-#120
-0"
-0$
-b110 #
-b110 '
-#125
-1!
-0(
-b100 )
-1"
-#130
-0!
-0"
-1$
-1%
-#135
-1"
-#140
-0"
-0&
-0$
-b111 #
-b111 '
-#145
-1"
-#150
-0"
-1&
-1$
-#155
-1"
-#160
-0"
-0$
-b0 #
-b0 '
-0%
-#165
-1!
-b100 )
-1"
-#170
-0"
-0&
-1$
-#175
-0!
-1"
-#180
-0"
+b0 "
+b0 (
+1)
+1#
+#100000
+0#
