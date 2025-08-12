@@ -1,134 +1,58 @@
-`timescale 1ps/1ps
-`include "res.v"
-module tb ();
+`timescale 1ns/1ps
+`include "top_module.v"
+module tb();
+
     reg clk;
-    reg rst;
-    reg  [2:0] data_in;
-    reg mode;
+    reg reset;
+    reg data_in;
     reg valid;
-   wire parity_ok;
-
-par u1(.clk(clk),
-        .rst(rst),
+    reg mode;
+    wire parity_ok;
+    wire [3:0] counter;
+    
+    parity u1 (
+        .clk(clk),
+        .reset(reset),
         .data_in(data_in),
-        .mode(mode),
         .valid(valid),
-        .parity_ok(parity_ok)
-    );
-    initial
- begin
-        clk = 0;
-        forever #5 clk = ~clk; 
- end
-  
-    initial 
-begin
-   
+        .mode(mode),
+        .parity_ok(parity_ok),
+        .counter(counter)
         
-        rst =0;
-        data_in =0;
-        mode=0;
-        valid = 1;
-        #10;
-        rst =1;
-        data_in =0;
-        mode=1;
-        valid = 0;
-        #10;
-  rst =0;
-        data_in =1;
-        mode=0;
-        valid = 0;
-        #10;
-  rst =1;
-        data_in =1;
-        mode=1;
-        valid = 1;
-        #10;
-  rst =0;
-        data_in =2;
-        mode=0;
-        valid = 0;
-        #10;
-  rst =0;
-        data_in =2;
-        mode=1;
-        valid = 1;
-        #10;
-  rst = 0;
-        data_in =3;
-        mode=0;
-        valid = 1;
-        #10;
-  rst = 0;
-        data_in =3;
-        mode=1;
-        valid = 0;
-        #10;
-  rst =1;
-        data_in =4;
-        mode=0;
-        valid = 1;  
-        #10;
-    rst =1;
-        data_in =4;
-        mode=1;
-        valid = 0;
-        #10;
-    rst =0;
-        data_in =5;
-        mode=0;
-        valid = 1;
-        #10;
-    rst =0;
-        data_in =5;
-        mode=1;
-        valid = 1;
-        #10;
-    rst =0;
-        data_in =6;
-        mode=0;
-        valid = 1;
-        #10;
-    rst =1;
-        data_in =6;
-        mode=1;
-        valid = 1;
-        #10;
-    rst =1;
-        data_in =7;
-        mode=0;
-        valid = 0;
-        #10;
-    rst =1;
-        data_in =7;
-        mode=1;
-        valid = 1;
-        #10;
-    rst =0;
-        data_in =8;
-        mode=0;
-        valid = 1;
-        #10;
-    rst =0;
-        data_in =8;
-        mode=1;
-        valid = 0;
-        #10;
-                $finish;        
-
-end
+    );
 
     initial begin
-        $dumpfile("parity_checker_tb.vcd");
+        clk = 0;
+        forever #5 clk  = ~clk;
+    end
+    initial begin
+        
+        reset = 1;
+        valid = 0;
+        mode = 0;        
+        data_in = 0;
+        #10;
+        reset = 0;
+        valid = 1;
+
+        data_in = 1; #10;
+        data_in = 1; #10;
+        data_in = 0; #10;
+        data_in = 1; #10;
+        data_in = 0; #10;
+        data_in = 0; #10;
+        data_in = 0; #10;   
+        data_in = 1; #10;
+        
+      #10 $finish;
+
+    end
+    initial begin
+        $dumpfile("parity.vcd");
         $dumpvars(0, tb);
-    end 
+    end
+    initial begin
+                $monitor("time =%0t ,clk%b ,reset = %b,mode = %b,valid = %b, data_in =%b,counter = %d,parity_ok =%b", $time, clk, reset,mode,valid, data_in, counter, parity_ok);
+    end
 
-
-
-
-initial begin
-  $monitor("$time =%0t,clk =  %b,rst=%b,data_in=%b,mode = %b, valid = %b,  parity_ok = %b",$time,clk,rst,data_in,mode,valid,parity_ok);
-  end
-    
 endmodule
